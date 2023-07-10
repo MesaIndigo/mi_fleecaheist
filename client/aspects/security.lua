@@ -71,6 +71,7 @@ local function spawnsecpadzone1(choice)
                 end,
                 onSelect = function()
                     vaultmoving = true
+                    hacked = true
                     TriggerEvent('openvault', choice)
                     Wait(20000)
                     vaultmoving = false
