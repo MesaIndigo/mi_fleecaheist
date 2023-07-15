@@ -52,7 +52,7 @@ local function spawnvaultzone(choice)
                     drillt.obj = nil
                     drillt.spawned = false
                     vaultopen = true
-                    TriggerEvent('openvault', choice)
+                    TriggerServerEvent('mifh:vault:open', choice)
                 end
             },
         }
@@ -76,19 +76,10 @@ AddEventHandler('spawnthermaldrill', function(choice)
     drillt.spawned = true
 end)
 
-AddEventHandler('openvault', function(choice)
+RegisterNetEvent('mifh:vault:set')
+AddEventHandler('mifh:vault:set', function(choice, netid)
     local vault = choice.vaultdoor
-    door = vault.loc
-    local obj = GetClosestObjectOfType(door.x, door.y, door.z, 10, vault.hash, false, false, false)
-    local count = 0
-    SetEntityHeading(obj, vault.head)
-    repeat
-        local rotation = GetEntityHeading(obj) - 0.05
-        SetEntityHeading(obj, rotation)
-        count = count + 1
-        Wait(1)
-    until count == 2000
-    FreezeEntityPosition(obj, true)
+    
 end)
 
 AddEventHandler('closevault', function(choice)

@@ -17,7 +17,7 @@ BK.banks  = {
     hack = 'hack_tablet',
 
     drill = 'drill_thermal',
-    drilltime = 5, -- time in minutes
+    drilltime = 0.5, -- time in minutes
 
     money = 'bag_blackmoney',
 
