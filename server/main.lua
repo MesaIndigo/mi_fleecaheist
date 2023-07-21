@@ -18,16 +18,22 @@ lib.callback.register('mifh:remove:key', function(source)
     Inventory:RemoveItem(source, BK.banks.key, 1)
 end)
 
-RegisterServerEvent('mifh:vault:open')
-AddEventHandler('mifh:vault:open', function(choice, netid)
-    local vault = choice.vaultdoor
-    local count = 0
-    SetEntityHeading(netid, vault.head)
-    repeat
-        local rotation = GetEntityHeading(netid) - 0.05
-        SetEntityHeading(netid, rotation)
-        count = count + 1
-        Wait(1)
-    until count == 2000
-    FreezeEntityPosition(netid, true)
+RegisterServerEvent('server:vault:open')
+AddEventHandler('server:vault:open', function()
+    TriggerClientEvent('openvault', -1)
+end)
+
+RegisterServerEvent('server:vault:close')
+AddEventHandler('server:vault:close', function()
+    TriggerClientEvent('closevault', -1)
+end)
+
+RegisterServerEvent('server:vault:reset')
+AddEventHandler('server:vault:reset', function()
+    TriggerClientEvent('resetvault', -1)
+end)
+
+RegisterServerEvent('server:vault:drill')
+AddEventHandler('server:vault:drill', function()
+    TriggerClientEvent('spawnthermaldrill', -1)
 end)
