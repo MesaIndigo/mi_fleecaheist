@@ -72,7 +72,7 @@ local function spawnsecpadzone1(choice)
                 onSelect = function()
                     vaultmoving = true
                     hacked = true
-                    TriggerServerEvent('server:vault:open')
+                    TriggerServerEvent('server:vault:open', choice)
                     Wait(20000)
                     vaultmoving = false
                     vaultopen = true
@@ -88,7 +88,7 @@ local function spawnsecpadzone1(choice)
                 end,
                 onSelect = function()
                     vaultmoving = true
-                    TriggerServerEvent('server:vault:open')
+                    TriggerServerEvent('server:vault:open', choice)
                     Wait(20000)
                     vaultmoving = false
                     vaultopen = true
@@ -103,7 +103,7 @@ local function spawnsecpadzone1(choice)
                 end,
                 onSelect = function()
                     vaultmoving = true
-                    TriggerServerEvent('server:vault:close')
+                    TriggerServerEvent('server:vault:close', choice)
                     Wait(20000)
                     vaultmoving = false
                     vaultopen = false
@@ -132,7 +132,7 @@ local function spawnsecpadzone2(choice)
                 end,
                 onSelect = function()
                     vaultmoving = true
-                    TriggerServerEvent('server:vault:open')
+                    TriggerServerEvent('server:vault:open', choice)
                     Wait(20000)
                     vaultmoving = false
                     vaultopen = true
@@ -147,7 +147,7 @@ local function spawnsecpadzone2(choice)
                 end,
                 onSelect = function()
                     vaultmoving = true
-                    TriggerServerEvent('server:vault:close')
+                    TriggerServerEvent('server:vault:close', choice)
                     Wait(20000)
                     vaultmoving = false
                     vaultopen = false

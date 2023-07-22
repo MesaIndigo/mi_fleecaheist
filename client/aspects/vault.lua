@@ -28,8 +28,6 @@ local function spawnvaultzone(choice)
                     return distance < 2.0 and not vaultopen and not drilled
                 end,
                 onSelect = function()
-                    TriggerServerEvent('server:vault:drill')
-                    UT.mfhnotify(CG.notify.title, CG.notify.title, CG.notify.description)
                     if lib.progressBar({
                         duration = 5000,
                         label = 'Setting up Drill',
@@ -37,44 +35,68 @@ local function spawnvaultzone(choice)
                         canCancel = true,
                         disable = {
                             car = true,
+                            move = true,
                         },
                         anim = {
                             dict = 'mini@repair',
                             clip = 'fixing_a_player'
                         },
                     })
-                    then 
+                    then
+                        TriggerServerEvent('server:vault:drill', choice)
+                        UT.mfhnotify(CG.notify.title, CG.notify.title, CG.notify.description)
                         lib.callback('mifh:remove:drill', false, function(source) end)
                         drilled = true
                     end
-                    Wait(BK.banks.drilltime * 60000)
-                    DeleteEntity(drillt.obj)
-                    drillt.obj = nil
-                    drillt.spawned = false
+                    Citizen.Wait(BK.banks.drilltime * 60000)
+                    TriggerServerEvent('server:drill:remove', choice)
                     vaultopen = true
-                    TriggerServerEvent('server:vault:open')
+                    TriggerServerEvent('server:vault:open', choice)
                 end
             },
         }
     })
 end
 
+
+
 RegisterNetEvent('spawnthermaldrill')
 AddEventHandler('spawnthermaldrill', function(choice)
     local thermdrill = lib.requestModel(joaat('k4mb1_prop_thermaldrill'))
-    -- for testing, changed to alta [BK.banks.chosenbank.cameras]
     local coords = choice.vaultdoor.drill
     local head = choice.vaultdoor.drillhead
     if drillt.spawned then return end
 
     local toolt = CreateObject(
-        thermdrill, coords.x-0.34, coords.y, coords.z-0.4, 
+        thermdrill, coords.x-0.34, coords.y, coords.z-0.45, 
         true, true, true)
     SetEntityHeading(toolt, head)
     FreezeEntityPosition(toolt, true)
 
+    local dict, anim = 'scr_gr_bunk', 'scr_gr_bunk_lathe_metal_shards'
+    if not HasNamedPtfxAssetLoaded(dict) then
+        RequestNamedPtfxAsset(dict)
+        while not HasNamedPtfxAssetLoaded(dict) do
+            Wait(1)
+        end
+    end
+
+    UseParticleFxAssetNextCall(dict)
+    local shinyshit = StartParticleFxLoopedAtCoord(anim,
+    coords.x+0.2, coords.y-0.4, coords.z-0.25,
+    0.0, 0.0, 0.0, 3.0, false, false, false, false)
+    Wait(BK.banks.drilltime * 60000)
+    StopParticleFxLooped(shinyshit, true)
+
     drillt.obj = toolt
     drillt.spawned = true
+end)
+
+RegisterNetEvent('deletethermaldrill')
+AddEventHandler('deletethermaldrill', function(choice)
+    DeleteEntity(drillt.obj)
+    drillt.obj = nil
+    drillt.spawned = false
 end)
 
 RegisterNetEvent('openvault')
@@ -83,7 +105,7 @@ AddEventHandler('openvault', function(choice)
     door = vault.loc
     local obj = GetClosestObjectOfType(door.x, door.y, door.z, 10, vault.hash, false, false, false)
     local count = 0
-    SetEntityHeading(obj, vault.headend)
+    SetEntityHeading(obj, vault.head)
     repeat
         local rotation = GetEntityHeading(obj) - 0.05
         SetEntityHeading(obj, rotation)

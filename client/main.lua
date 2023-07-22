@@ -18,6 +18,10 @@ local function cooldown(choice)
     end)
 end
 
+RegisterCommand('dodoor', function()
+    TriggerEvent('mifh:start:vault', BK.banks.legion)
+end, false)
+
 local function heiststartloc()
     exports.ox_target:addBoxZone({
         coords = CG.start.loc,

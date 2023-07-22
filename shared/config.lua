@@ -1,5 +1,5 @@
 CG = {}
-CG.debug = false
+CG.debug = true
 
 CG.options = {
     manager = true

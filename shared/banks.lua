@@ -19,7 +19,13 @@ BK.banks  = {
     drill = 'drill_thermal',
     drilltime = 0.5, -- time in minutes
 
-    money = 'bag_blackmoney',
+    money = {
+        cash = true, -- if true, gives player money / false gives player bag item
+        amt = math.random(85000, 145000),
+        item1 = 'money',
+
+        item2 = 'bag_blackmoney',
+    },
 
     alta = {
         secsystemoutside = {
@@ -35,9 +41,9 @@ BK.banks  = {
         vaultdoor = {
             hash = 2121050683,
             loc = vec3(312.858, -283.730, 54.303),
-            head = 249.865,
+            head = 250.865,
             size = vec3(2, 1.9, 2.5),
-            headend = 149.865, -- head - 100.00
+            headend = 150.865, -- head - 100.00
             drill = vec3(311.810, -283.530, 54.303),
             drillhead = 70.000
         },
@@ -111,9 +117,9 @@ BK.banks  = {
         vaultdoor = {
             hash = 2121050683,
             loc = vec3(-352.136, -54.572, 49.175),
-            head = 249.865,
+            head = 250.865,
             size = vec3(2, 1.9, 2.5),
-            headend = 149.865, -- head - 100.00
+            headend = 150.865, -- head - 100.00
             drill = vec3(-353.336, -54.572, 49.175),
             drillhead = 70.000
         },
@@ -151,7 +157,7 @@ BK.banks  = {
             loc = vec3(-1210.160, -334.959, 37.919),
             head = 296.865,
             size = vec3(2, 1.9, 2.5),
-            headend = 149.865, -- head - 100.00
+            headend = 196.865, -- head - 100.00
             drill = vec3(-1211.160, -335.349, 37.919),
             drillhead = 115.000
         },
@@ -189,7 +195,7 @@ BK.banks  = {
             loc = vec3(-2957.738, 482.970, 15.835),
             head = 358.00,
             size = vec3(2, 1.9, 2.5),
-            headend = 149.865, -- head - 100.00
+            headend = 258.00, -- head - 100.00
             drill = vec3(-2957.738, 481.700, 15.835),
             drillhead = 178.000
         },
@@ -227,7 +233,7 @@ BK.banks  = {
             loc = vec3(1174.942, 2711.661, 38.226),
             head = 90.00,
             size = vec3(2, 1.9, 2.5),
-            headend = 149.865, -- head - 100.00
+            headend = 350.00, -- head - 100.00
             drill = vec3(1176.431, 2711.661, 38.226),
             drillhead = 270.00
         },
