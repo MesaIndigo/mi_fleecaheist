@@ -1,5 +1,11 @@
+-- config variables
 CG = {}
 CG.debug = true
+
+-- global variables
+Debug = CG.debug
+Target = exports.ox_target
+Inventory = exports.ox_inventory
 
 CG.options = {
     manager = true
@@ -12,7 +18,7 @@ CG.start = {
     loc = vec4(1276.001, -1710.265, 54.771, 297.869),
     size = vec3(0.5, 1, 1),
     head = 25,
-    debug = debug
+    debug = Debug
 }
 
 -- notification showing you were caught on camera

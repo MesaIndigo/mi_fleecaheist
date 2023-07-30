@@ -1,4 +1,3 @@
-local debug = CG.debug
 --local chosenbank = FH.chosenbank
 local hacked = false
 local failed = false
@@ -47,7 +46,7 @@ local function spawnsecpadzone1(choice)
         coords = coords,
         size = size,
         rotation = head,
-        debug = debug,
+        debug = Debug,
         options = {
             {
                 name = 'secpad_hack1',
@@ -89,6 +88,7 @@ local function spawnsecpadzone1(choice)
                 onSelect = function()
                     vaultmoving = true
                     TriggerServerEvent('server:vault:open', choice)
+                    UT.mfhnotify('fleecadoorop', 'Vault Opening', 'Stand clear of the door')
                     Wait(20000)
                     vaultmoving = false
                     vaultopen = true
@@ -104,6 +104,7 @@ local function spawnsecpadzone1(choice)
                 onSelect = function()
                     vaultmoving = true
                     TriggerServerEvent('server:vault:close', choice)
+                    UT.mfhnotify('fleecadoorcls', 'Vault Closing', 'Stand clear of the door')
                     Wait(20000)
                     vaultmoving = false
                     vaultopen = false
@@ -121,7 +122,7 @@ local function spawnsecpadzone2(choice)
         coords = coords,
         size = size,
         rotation = head,
-        debug = debug,
+        debug = Debug,
         options = {
             {
                 name = 'secpad_vltopen2',
@@ -133,6 +134,7 @@ local function spawnsecpadzone2(choice)
                 onSelect = function()
                     vaultmoving = true
                     TriggerServerEvent('server:vault:open', choice)
+                    UT.mfhnotify('fleecadoorop', 'Vault Opening', 'Stand clear of the door')
                     Wait(20000)
                     vaultmoving = false
                     vaultopen = true
@@ -148,6 +150,7 @@ local function spawnsecpadzone2(choice)
                 onSelect = function()
                     vaultmoving = true
                     TriggerServerEvent('server:vault:close', choice)
+                    UT.mfhnotify('fleecadoorcls', 'Vault Closing', 'Stand clear of the door')
                     Wait(20000)
                     vaultmoving = false
                     vaultopen = false

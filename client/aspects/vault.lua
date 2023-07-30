@@ -1,4 +1,3 @@
-local debug = CG.debug
 --local chosenbank = FH.chosenbank
 local door = nil
 local drilled = false
@@ -17,7 +16,7 @@ local function spawnvaultzone(choice)
         coords = coords,
         size = size,
         rotation = head,
-        debug = debug,
+        debug = Debug,
         options = {
             {
                 name = 'vault_thermal',
@@ -52,6 +51,7 @@ local function spawnvaultzone(choice)
                     TriggerServerEvent('server:drill:remove', choice)
                     vaultopen = true
                     TriggerServerEvent('server:vault:open', choice)
+                    UT.mfhnotify('fleecadoorop', 'Vault Opening', 'Stand clear of the door')
                 end
             },
         }

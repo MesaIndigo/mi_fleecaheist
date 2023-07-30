@@ -1,4 +1,3 @@
-local debug = CG.debug
 -- trolley variables
 local trolly1, trolly2, trolly3
 local trollys1 = {
@@ -55,7 +54,6 @@ end
 local function spawntrolly2(choice)
     local loc = choice.money.loc
     local model = lib.requestModel(joaat('hei_prop_hei_cash_trolly_01'))
-    -- for testing, changed to alta [BK.banks.chosenbank.cameracontrol]
     local coords = loc[2]
     if trollys2.spawned then return end
 
@@ -92,7 +90,6 @@ end
 local function spawntrolly3(choice)
     local loc = choice.money.loc
     local model = lib.requestModel(joaat('hei_prop_hei_cash_trolly_01'))
-    -- for testing, changed to alta [BK.banks.chosenbank.cameracontrol]
     local coords = loc[3]
     if trollys3.spawned then return end
 

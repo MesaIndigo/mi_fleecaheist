@@ -27,7 +27,7 @@ local function heiststartloc()
         coords = CG.start.loc,
         size = CG.start.size,
         rotation = CG.start.head,
-        debug = CG.debug,
+        debug = Debug,
         options = {
             {
                 name = 'fleecastart',
