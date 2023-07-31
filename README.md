@@ -1,8 +1,8 @@
 ![fleecah](https://github.com/MesaIndigo/mi_fleecaheist/assets/116332087/af4a99dc-22f9-4b3d-97e1-66ac87612f48)
 
 ### M.I. Resources Support Discord: [click me](https://discord.gg/XwhBUGErxY)
-![GitHub all releases](https://img.shields.io/github/downloads/MesaIndigo/mi_documents/total)
-![GitHub](https://img.shields.io/github/license/MesaIndigo/mi_documents)
+![GitHub all releases](https://img.shields.io/github/downloads/MesaIndigo/mi_fleecaheist/total)
+![GitHub](https://img.shields.io/github/license/MesaIndigo/mi_fleecaheist)
 
 ## Description:
 Go forth and rob those banks, but do it in your own style. Stealth? We got that. Loud? Go for it. Fuck it, surprise me.
