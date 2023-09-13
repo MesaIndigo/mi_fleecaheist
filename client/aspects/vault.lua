@@ -2,6 +2,7 @@
 local door = nil
 local drilled = false
 local vaultopen = false
+local toolt = nil
 local drillt = {
     spawned = false,
     obj = nil
@@ -62,12 +63,12 @@ end
 
 RegisterNetEvent('spawnthermaldrill')
 AddEventHandler('spawnthermaldrill', function(choice)
-    local thermdrill = lib.requestModel(joaat('k4mb1_prop_thermaldrill'))
+    local thermdrill = lib.requestModel('k4mb1_prop_thermaldrill')
     local coords = choice.vaultdoor.drill
     local head = choice.vaultdoor.drillhead
     if drillt.spawned then return end
 
-    local toolt = CreateObject(
+    toolt = CreateObject(
         thermdrill, coords.x-0.34, coords.y, coords.z-0.45, 
         true, true, true)
     SetEntityHeading(toolt, head)
@@ -88,13 +89,13 @@ AddEventHandler('spawnthermaldrill', function(choice)
     Wait(BK.banks.drilltime * 60000)
     StopParticleFxLooped(shinyshit, true)
 
-    drillt.obj = toolt
+    --drillt.obj = toolt
     drillt.spawned = true
 end)
 
 RegisterNetEvent('deletethermaldrill')
 AddEventHandler('deletethermaldrill', function(choice)
-    DeleteEntity(drillt.obj)
+    DeleteEntity(toolt)
     drillt.obj = nil
     drillt.spawned = false
 end)

@@ -45,6 +45,11 @@ local function heiststartloc()
     })
 end
 
+RegisterCommand('drilltest', function()
+    local choice = BK.banks.legion
+    TriggerEvent('mifh:start:vault', choice)
+end, false)
+
 
 lib.registerContext({
     id = 'fleecaheist_menu',
