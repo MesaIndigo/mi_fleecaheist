@@ -7,26 +7,32 @@ game 'gta5'
 -- Resource Information
 name 'mi_fleecaheist'
 author 'MI_Agimir'
-version '1.0.0'
+version '2.0.0'
 repository 'https://github.com/MIAgimir/mi_fleecaheist'
 description 'get money you nerd'
 
 -- Manifest
 shared_scripts {
 	'@ox_lib/init.lua',
-    'shared/banks.lua',
+    'shared/heist.lua',
+    'shared/leo_notif.lua',
 	'shared/config.lua'
 }
 
 client_scripts {
-    'client/aspects/*.lua',
+    'client/functions/*.lua',
     'client/util.lua',
-    'client/main.lua'
+    'client/events.lua'
 }
-
 
 server_scripts {
     '@oxmysql/lib/MySQL.lua',
     'server/version.lua',
-    'server/main.lua'
+    'server/events.lua'
+}
+
+dependencies {
+    'ox_inventory',
+    'ox_lib',
+    'ox_target'
 }
