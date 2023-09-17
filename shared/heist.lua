@@ -10,6 +10,20 @@ option to open / close vault door with inside / outside pad
 
 ]]
 
+BK.options = {
+    manager = true
+}
+
+-- time before heist can be planned again
+BK.heistcooldown = 30
+
+BK.start = {
+    loc = vec4(1276.001, -1710.265, 54.771, 297.869),
+    size = vec3(0.5, 1, 1),
+    head = 25,
+    debug = Debug
+}
+
 BK.banks  = {
 
     key = 'scard_fleeca',

@@ -13,13 +13,13 @@ local function CheckMenuVersion()
             versionPrint('error', 'ERROR: Unable to check version. Your ports or connections may be blocking access.')
             return
         end
-        versionPrint('success', '----------------------------------------')
         if text == currentVersion then
-            versionPrint('success', ('script version up to date: %s'):format(currentVersion))
+            versionPrint('success', '----------------------------------------')
+            versionPrint('success', ('version: %s'):format(currentVersion))
             versionPrint('success', '----------------------------------------')
         else
-            versionPrint('error', ('script version out of date: %s'):format(text))
-            versionPrint('success', 'please update to the latest version')
+            versionPrint('success', '----------------------------------------')
+            versionPrint('error', ('please update to: %s'):format(text))
             versionPrint('success', '----------------------------------------')
         end
     end)

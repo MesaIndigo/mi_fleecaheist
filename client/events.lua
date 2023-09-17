@@ -1,220 +1,61 @@
-local debug = CG.debug
-local resourceName = GetCurrentResourceName()
-FH = {}
-FH.chosenbank = nil
-FH.inprogress = false
+UT = {}
 
-local blip
-
-local timer = false
-local cool = CG.heistcooldown
-local function cooldown(choice)
-    timer = true
-    SetTimeout(cool * 60000, function()
-        timer = false
-        FH.inprogress = false
-        UT.mfhnotify('fleecareset', 'Time limit reached', 'Fleeca systems reset')
-        TriggerEvent('mifh:reset:all', choice)
-    end)
+UT.mfhped_utils = function(ped, anim)
+    TaskStartScenarioInPlace(ped, anim, 0, true)
+    FreezeEntityPosition(ped, true)
+    SetEntityInvincible(ped, true)
+    SetBlockingOfNonTemporaryEvents(ped, true)
 end
 
-RegisterCommand('dodoor', function()
-    TriggerEvent('mifh:start:vault', BK.banks.legion)
-end, false)
+UT.mfhremove_ped = function(ped)
+    DeleteEntity(ped)
+end
 
-local function heiststartloc()
-    exports.ox_target:addBoxZone({
-        coords = CG.start.loc,
-        size = CG.start.size,
-        rotation = CG.start.head,
-        debug = Debug,
-        options = {
-            {
-                name = 'fleecastart',
-                icon = 'fa-solid fa-ticket',
-                label = 'Pick bank location',
-                canInteract = function(_, distance)
-                    return distance < 2.0 and not FH.inprogress
-                end,
-                onSelect = function()
-                    lib.showContext('fleecaheist_menu')
-                end,
-            },
-        }
+UT.mfhobj_utils = function(obj, model, head)
+    SetEntityHeading(obj, head)
+    SetModelAsNoLongerNeeded(model)
+    PlaceObjectOnGroundProperly(obj)
+    FreezeEntityPosition(obj, true)
+    SetEntityCollision(obj, true, true)
+end
 
+UT.mfhremove_obj = function(obj)
+    DeleteEntity(obj)
+end
+
+UT.mfhroute = function(blip)
+    SetBlipSprite(blip, 250)
+    SetBlipColour(blip, 3)
+    SetBlipRoute(blip, true)
+    SetBlipRouteColour(blip, 3)
+    SetBlipScale(blip, 0.7)
+    SetBlipAsShortRange(blip, true)
+    BeginTextCommandSetBlipName('STRING')
+    AddTextComponentSubstringPlayerName('Robbery Location')
+    EndTextCommandSetBlipName(blip)
+end
+
+UT.mfhremove_blip = function(blip)
+    if DoesBlipExist(blip) then
+        SetBlipAsMissionCreatorBlip(blip, false)
+        RemoveBlip(blip)
+    end
+end
+
+UT.mfhnotify = function(id, title, desc)
+    lib.notify({
+        id = id,
+        title = title,
+        description = desc,
+        position = CG.notify.position,
+        style = {
+            backgroundColor = CG.notify.background,
+            color = CG.notify.textcolor,
+            ['.description'] = {
+              color = CG.notify.desccolor
+            }
+        },
+        icon = CG.notify.icon,
+        iconColor = CG.notify.iconcolor
     })
 end
-
-RegisterCommand('drilltest', function()
-    local choice = BK.banks.legion
-    TriggerEvent('mifh:start:vault', choice)
-end, false)
-
-
-lib.registerContext({
-    id = 'fleecaheist_menu',
-    title = 'Darkweb: Fleeca Heist Plan',
-    options = {
-        {
-            title = 'Fleeca: location #1',
-            description = 'Los Santos, Alta St & Harwick Ave',
-            icon = 'piggy-bank',
-            onSelect = function()
-                if not timer then
-                FH.inprogress = true
-                FH.chosenbank = BK.banks.alta
-                local bloc = FH.chosenbank.vaultdoor.loc
-                blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
-                UT.mfhroute(blip)
-                UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
-                TriggerEvent('mifh:start:mngr', FH.chosenbank)
-                TriggerEvent('mifh:start:security', FH.chosenbank)
-                TriggerEvent('mifh:start:vault', FH.chosenbank)
-                TriggerEvent('mifh:start:trollys', FH.chosenbank)
-                cooldown(FH.chosenbank)
-                UT.mfhremove_blip(blip)
-                end
-            end,
-        },
-        {
-            title = 'Fleeca: location #2',
-            description = 'Los Santos, Mission Row & Straberry Ave',
-            icon = 'piggy-bank',
-            onSelect = function()
-                FH.inprogress = true
-                FH.chosenbank = BK.banks.legion
-                local bloc = FH.chosenbank.vaultdoor.loc
-                blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
-                UT.mfhroute(blip)
-                UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
-                TriggerEvent('mifh:start:mngr', FH.chosenbank)
-                TriggerEvent('mifh:start:security', FH.chosenbank)
-                TriggerEvent('mifh:start:vault', FH.chosenbank)
-                TriggerEvent('mifh:start:trollys', FH.chosenbank)
-                cooldown(FH.chosenbank)
-                UT.mfhremove_blip(blip)
-            end,
-        },
-        {
-            title = 'Fleeca: location #3',
-            description = 'Los Santos, Burton St & San Vitus Blvd',
-            icon = 'piggy-bank',
-            onSelect = function()
-                FH.inprogress = true
-                FH.chosenbank = BK.banks.burton
-                local bloc = FH.chosenbank.vaultdoor.loc
-                blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
-                UT.mfhroute(blip)
-                UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
-                TriggerEvent('mifh:start:mngr', FH.chosenbank)
-                TriggerEvent('mifh:start:security', FH.chosenbank)
-                TriggerEvent('mifh:start:vault', FH.chosenbank)
-                TriggerEvent('mifh:start:trollys', FH.chosenbank)
-                cooldown(FH.chosenbank)
-                UT.mfhremove_blip(blip)
-            end,
-        },
-        {
-            title = 'Fleeca: location #4',
-            description = 'Los Santos, Rockford Hills & Blvd Del Perro',
-            icon = 'piggy-bank',
-            onSelect = function()
-                FH.inprogress = true
-                FH.chosenbank = BK.banks.delperro
-                local bloc = FH.chosenbank.vaultdoor.loc
-                blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
-                UT.mfhroute(blip)
-                UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
-                TriggerEvent('mifh:start:mngr', FH.chosenbank)
-                TriggerEvent('mifh:start:security', FH.chosenbank)
-                TriggerEvent('mifh:start:vault', FH.chosenbank)
-                TriggerEvent('mifh:start:trollys', FH.chosenbank)
-                cooldown(FH.chosenbank)
-                UT.mfhremove_blip(blip)
-            end,
-        },
-        {
-            title = 'Fleeca: location #5',
-            description = 'Chumash, Banham Canyon & Great Ocean Highway',
-            icon = 'piggy-bank',
-            onSelect = function()
-                FH.inprogress = true
-                FH.chosenbank = BK.banks.chumash
-                local bloc = FH.chosenbank.vaultdoor.loc
-                blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
-                UT.mfhroute(blip)
-                UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
-                TriggerEvent('mifh:start:mngr', FH.chosenbank)
-                TriggerEvent('mifh:start:security', FH.chosenbank)
-                TriggerEvent('mifh:start:vault', FH.chosenbank)
-                TriggerEvent('mifh:start:trollys', FH.chosenbank)
-                cooldown(FH.chosenbank)
-                UT.mfhremove_blip(blip)
-            end,
-        },
-        {
-            title = 'Fleeca: location #6',
-            description = 'Harmony, Route 68 & Grand Senora Desert',
-            icon = 'piggy-bank',
-            onSelect = function()
-                FH.inprogress = true
-                FH.chosenbank = BK.banks.harmony
-                local bloc = FH.chosenbank.vaultdoor.loc
-                blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
-                UT.mfhroute(blip)
-                UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
-                TriggerEvent('mifh:start:mngr', FH.chosenbank)
-                TriggerEvent('mifh:start:security', FH.chosenbank)
-                TriggerEvent('mifh:start:vault', FH.chosenbank)
-                TriggerEvent('mifh:start:trollys', FH.chosenbank)
-                cooldown(FH.chosenbank)
-                UT.mfhremove_blip(blip)
-            end,
-        },
-    }
-})
-
-AddEventHandler('mifh:reset:all', function(choice)
-    TriggerEvent('mifh:reset:mngr', choice)
-    TriggerEvent('mifh:reset:security', choice)
-    TriggerEvent('mifh:reset:vault', choice)
-    TriggerEvent('mifh:reset:trollys', choice)
-end)
-
---[[
-
-RegisterCommand('breset', function(choice)
-    TriggerEvent('mifh:reset:mngr', choice)
-    TriggerEvent('mifh:reset:security', choice)
-    TriggerEvent('mifh:reset:vault', choice)
-    TriggerEvent('mifh:reset:trollys', choice)
-end, false)
-
-RegisterCommand('bstart1', function()
-    FH.inprogress = true
-    FH.chosenbank = BK.banks.alta
-    TriggerEvent('mifh:start:mngr', FH.chosenbank)
-    TriggerEvent('mifh:start:security', FH.chosenbank)
-    TriggerEvent('mifh:start:vault', FH.chosenbank)
-    TriggerEvent('mifh:start:trollys', FH.chosenbank)
-end, false)
-
-RegisterCommand('bstart2', function()
-    FH.inprogress = true
-    FH.chosenbank = BK.banks.legion
-    TriggerEvent('mifh:start:mngr', FH.chosenbank)
-    TriggerEvent('mifh:start:security', FH.chosenbank)
-    TriggerEvent('mifh:start:vault', FH.chosenbank)
-    TriggerEvent('mifh:start:trollys', FH.chosenbank)
-end, false)
-]]
-
-Citizen.CreateThread(function()
-    if resourceName == GetCurrentResourceName() then
-        if not FH.inprogress then
-            heiststartloc()
-        else
-            return end
-        Citizen.Wait(1000)
-    end
-end)
