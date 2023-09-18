@@ -26,6 +26,7 @@ function NotifyPolice(alarm, loc)
     if alarm then
         -- alert the hoes
         -- create blip
+        -- gtfo
     end
     ----------------------------------------------------
 end

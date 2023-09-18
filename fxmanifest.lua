@@ -12,11 +12,13 @@ repository 'https://github.com/MIAgimir/mi_fleecaheist'
 description 'get money you nerd'
 
 -- Manifest
+files {
+    'locales/*.lua'
+}
+
 shared_scripts {
 	'@ox_lib/init.lua',
-    'shared/heist.lua',
-    'shared/leo_notif.lua',
-	'shared/config.lua'
+    'shared/*.lua'
 }
 
 client_scripts {
