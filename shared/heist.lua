@@ -18,9 +18,13 @@ BK.options = {
 BK.heistcooldown = 30
 
 BK.start = {
+
     loc = vec4(1276.001, -1710.265, 54.771, 297.869),
+
     size = vec3(0.5, 1, 1),
+
     head = 25,
+
     debug = Debug
 }
 
@@ -31,27 +35,33 @@ BK.banks  = {
     hack = 'hack_tablet',
 
     drill = 'drill_thermal',
+
     drilltime = 0.5, -- time in minutes
 
     money = {
         cash = true, -- if true, gives player money / false gives player bag item
+
         amt = math.random(85000, 145000),
+
         item1 = 'money',
 
         item2 = 'bag_blackmoney',
     },
 
     alta = {
+
         secsystemoutside = {
             loc = vec3(311.053, -284.734, 54.364),
             head = 160.00,
             size = vec3(0.5, 0.2, 0.6),
         },
+
         secsysteminside = {
             loc = vec3(312.772, -285.051, 54.364),
             head = 160.00,
             size = vec3(0.5, 0.2, 0.6),
         },
+
         vaultdoor = {
             hash = 2121050683,
             loc = vec3(312.858, -283.730, 54.303),
@@ -61,6 +71,7 @@ BK.banks  = {
             drill = vec3(311.810, -283.530, 54.303),
             drillhead = 70.000
         },
+
         manager = {
             ped = 'a_f_y_business_01',
             anim = 'WORLD_HUMAN_DRINKING_FACILITY',
@@ -70,6 +81,7 @@ BK.banks  = {
                 [3] = vec4(303.659, -276.756, 54.166, 45.574)
             }
         },
+
         money = {
             loc = {
                 [1] = vec4(315.467, -284.806, 54.142, 65.479),
@@ -80,16 +92,19 @@ BK.banks  = {
     },
 
     legion = {
+        
         secsystemoutside = {
             loc = vec3(146.721, -1046.367, 29.568),
             head = 160.00,
             size = vec3(0.5, 0.2, 0.6),
         },
+
         secsysteminside = {
             loc = vec3(148.439, -1046.685, 29.568),
             head = 160.00,
             size = vec3(0.5, 0.2, 0.6),
         },
+
         vaultdoor = {
             hash = 2121050683,
             loc = vec3(148.626, -1045.363, 29.506),
@@ -99,6 +114,7 @@ BK.banks  = {
             drill = vec3(147.476, -1045.163, 29.506),
             drillhead = 70.000
         },
+
         manager = {
             ped = 'a_f_y_business_01',
             anim = 'WORLD_HUMAN_DRINKING_FACILITY',
@@ -108,6 +124,7 @@ BK.banks  = {
                 [3] = vec4(142.057, -1043.885, 29.368, 251.146)
             }
         },
+
         money = {
             loc = {
                 [1] = vec4(151.130, -1046.527, 29.367, 69.95),
@@ -118,16 +135,19 @@ BK.banks  = {
     },
 
     burton = {
+
         secsystemoutside = {
             loc = vec3(-354.006, -55.598, 49.236),
             head = 160.00,
             size = vec3(0.5, 0.2, 0.6),
         },
+
         secsysteminside = {
             loc = vec3(-352.282, -55.886, 49.236),
             head = 160.00,
             size = vec3(0.5, 0.2, 0.6),
         },
+
         vaultdoor = {
             hash = 2121050683,
             loc = vec3(-352.136, -54.572, 49.175),
@@ -137,6 +157,7 @@ BK.banks  = {
             drill = vec3(-353.336, -54.572, 49.175),
             drillhead = 70.000
         },
+        
         manager = {
             ped = 'a_f_y_business_01',
             anim = 'WORLD_HUMAN_DRINKING_FACILITY',
@@ -146,6 +167,7 @@ BK.banks  = {
                 [3] = vec4(-362.363, -38.153, 49.036, 158.509)
             }
         },
+
         money = {
             loc = {
                 [1] = vec4(-349.975, -54.869, 49.036, 110.735),
@@ -156,16 +178,19 @@ BK.banks  = {
     },
 
     delperro = {
+
         secsystemoutside = {
             loc = vec3(-1210.685, -336.880, 37.981),
             head = 206.00,
             size = vec3(0.5, 0.2, 0.6),
         },
+
         secsysteminside = {
             loc = vec3(-1209.280, -335.840, 37.981),
             head = 206.00,
             size = vec3(0.5, 0.2, 0.6),
         },
+
         vaultdoor = {
             hash = 2121050683,
             loc = vec3(-1210.160, -334.959, 37.919),
@@ -175,6 +200,7 @@ BK.banks  = {
             drill = vec3(-1211.160, -335.349, 37.919),
             drillhead = 115.000
         },
+
         manager = {
             ped = 'a_f_y_business_01',
             anim = 'WORLD_HUMAN_DRINKING_FACILITY',
@@ -184,6 +210,7 @@ BK.banks  = {
                 [3] = vec4(-1213.693, -332.900, 37.780, 351.523)
             }
         },
+
         money = {
             loc = {
                 [1] = vec4(-1207.879, -333.773, 37.780, 112.616),
@@ -194,16 +221,19 @@ BK.banks  = {
     },
 
     chumash = {
+
         secsystemoutside = {
             loc = vec3(-2956.232, 481.636, 15.897),
             head = 268.00,
             size = vec3(0.5, 0.2, 0.6),
         },
+
         secsysteminside = {
             loc = vec3(-2956.452, 483.370, 15.897),
             head = 268.00,
             size = vec3(0.5, 0.2, 0.6),
         },
+
         vaultdoor = {
             hash = 2121050683,
             loc = vec3(-2957.738, 482.970, 15.835),
@@ -213,6 +243,7 @@ BK.banks  = {
             drill = vec3(-2957.738, 481.700, 15.835),
             drillhead = 178.000
         },
+
         manager = {
             ped = 'a_f_y_business_01',
             anim = 'WORLD_HUMAN_DRINKING_FACILITY',
@@ -222,6 +253,7 @@ BK.banks  = {
                 [3] = vec4(-2964.417, 477.244, 15.696, 352.665)
             }
         },
+
         money = {
             loc = {
                 [1] = vec4(-2957.541, 485.744, 15.696, 171.884),
@@ -237,11 +269,13 @@ BK.banks  = {
             head = 180.00,
             size = vec3(0.5, 0.2, 0.6),
         },
+
         secsysteminside = {
             loc = vec3(1174.3541, 2712.898, 38.288),
             head = 180.00,
             size = vec3(0.5, 0.2, 0.6),
         },
+
         vaultdoor = {
             hash = 2121050683,
             loc = vec3(1174.942, 2711.661, 38.226),
@@ -251,6 +285,7 @@ BK.banks  = {
             drill = vec3(1176.431, 2711.661, 38.226),
             drillhead = 270.00
         },
+
         manager = {
             ped = 'a_f_y_business_01',
             anim = 'WORLD_HUMAN_DRINKING_FACILITY',
@@ -260,6 +295,7 @@ BK.banks  = {
                 [3] = vec4(1172.111, 2705.411, 38.087, 268.774)
             }
         },
+        
         money = {
             loc = {
                 [1] = vec4(1172.172, 2711.919, 38.087, 232.757),

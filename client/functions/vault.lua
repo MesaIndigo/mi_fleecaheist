@@ -132,6 +132,7 @@ AddEventHandler('closevault', function(choice)
     FreezeEntityPosition(obj, true)
 end)
 
+RegisterNetEvent('mifh:start:vault')
 AddEventHandler('mifh:start:vault', function(choice)
     spawnvaultzone(choice)
 end)

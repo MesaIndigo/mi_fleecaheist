@@ -1,5 +1,3 @@
-local debug = CG.debug
-local Inventory = exports.ox_inventory
 local bank = BK.banks
 
 lib.callback.register('mifh:give:securitycard', function(source)

@@ -1,61 +1,39 @@
-UT = {}
-
-UT.mfhped_utils = function(ped, anim)
-    TaskStartScenarioInPlace(ped, anim, 0, true)
-    FreezeEntityPosition(ped, true)
-    SetEntityInvincible(ped, true)
-    SetBlockingOfNonTemporaryEvents(ped, true)
-end
-
-UT.mfhremove_ped = function(ped)
-    DeleteEntity(ped)
-end
-
-UT.mfhobj_utils = function(obj, model, head)
-    SetEntityHeading(obj, head)
-    SetModelAsNoLongerNeeded(model)
-    PlaceObjectOnGroundProperly(obj)
-    FreezeEntityPosition(obj, true)
-    SetEntityCollision(obj, true, true)
-end
-
-UT.mfhremove_obj = function(obj)
-    DeleteEntity(obj)
-end
-
-UT.mfhroute = function(blip)
-    SetBlipSprite(blip, 250)
-    SetBlipColour(blip, 3)
-    SetBlipRoute(blip, true)
-    SetBlipRouteColour(blip, 3)
-    SetBlipScale(blip, 0.7)
-    SetBlipAsShortRange(blip, true)
-    BeginTextCommandSetBlipName('STRING')
-    AddTextComponentSubstringPlayerName('Robbery Location')
-    EndTextCommandSetBlipName(blip)
-end
-
-UT.mfhremove_blip = function(blip)
+-- remove blip info
+RemBlipInfo = function(blip)
     if DoesBlipExist(blip) then
         SetBlipAsMissionCreatorBlip(blip, false)
         RemoveBlip(blip)
     end
 end
 
-UT.mfhnotify = function(id, title, desc)
+-- set blip info
+SetBlipInfo = function(blip, sprite, color, route, name)
+    SetBlipSprite(blip, sprite)
+    SetBlipColour(blip, color)
+    SetBlipRoute(blip, route)
+    SetBlipRouteColour(blip, color)
+    SetBlipScale(blip, 0.7)
+    SetBlipAsShortRange(blip, true)
+    BeginTextCommandSetBlipName('STRING')
+    AddTextComponentSubstringPlayerName(name)
+    EndTextCommandSetBlipName(blip)
+end
+
+-- notify player
+Notify = function(id, title, desc, icon)
     lib.notify({
         id = id,
         title = title,
         description = desc,
-        position = CG.notify.position,
+        position = Ntfy.pos,
         style = {
-            backgroundColor = CG.notify.background,
-            color = CG.notify.textcolor,
+            backgroundColor = Ntfy.bgndclr,
+            color = Ntfy.txtclr,
             ['.description'] = {
-              color = CG.notify.desccolor
+              color = Ntfy.descclr
             }
         },
-        icon = CG.notify.icon,
-        iconColor = CG.notify.iconcolor
+        icon = icon,
+        iconColor = Ntfy.iconclr
     })
 end
