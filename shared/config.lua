@@ -2,6 +2,7 @@
 Debug = true
 Target = exports.ox_target
 Inventory = exports.ox_inventory
+Locale = lib.locale
 
 -- current framework options: OX
 Framework = 'OX'

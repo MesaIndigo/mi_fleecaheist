@@ -13,7 +13,7 @@ description 'get money you nerd'
 
 -- Manifest
 files {
-    'locales/*.lua'
+    'locales/*.json'
 }
 
 shared_scripts {
