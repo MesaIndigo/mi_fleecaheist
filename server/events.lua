@@ -46,3 +46,9 @@ RegisterServerEvent('server:drill:remove')
 AddEventHandler('server:drill:remove', function(choice)
     TriggerClientEvent('deletethermaldrill', -1, choice)
 end)
+
+-- load manager
+RegisterServerEvent('mifh:server:load:mngr')
+AddEventHandler('mifh:server:load:mngr', function(choice)
+    TriggerClientEvent('mifh:client:load:mngr', -1, choice)
+end)

@@ -18,14 +18,15 @@ local rndmz_anim = function(model)
     return model
 end
 
-local load_mngr = function(loc)
+RegisterNetEvent('mifh:client:load:mngr')
+AddEventHandler('mifh:client:load:mngr', function(bank)
     if not BK.options.manager then
         Notify('mngr_nonactive', Locale('mngr_false1'), Locale('mngr_false2'))
     else
         if not active then return end
         if active then
             local model, anim = lib.requestModel(rndmz_mngr), lib.requestModel(rndmz_anim)
-            uni = CreatePed(1, model, loc.x, loc.y, loc.z-1, loc.w, true, false)
+            uni = CreatePed(1, model, bank.loc.x, bank.loc.y, bank.loc.z-1, bank.loc.w, true, false)
             TaskStartScenarioInPlace(uni, anim, 0, true)
 
             local mngr_ops = {
@@ -69,4 +70,4 @@ local load_mngr = function(loc)
             exports.ox_target:addLocalEntity(uni, mngr_ops)
         end
     end
-end
+end)
