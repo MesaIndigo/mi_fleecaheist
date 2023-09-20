@@ -30,3 +30,26 @@ function NotifyPolice(alarm, loc)
     end
     ----------------------------------------------------
 end
+
+--[[
+    -- reference for cd_dispatch
+    
+    local data = exports['cd_dispatch']:GetPlayerInfo()
+    TriggerServerEvent('cd_dispatch:AddNotification', {
+        job_table = {'police'}, 
+        coords = targetCoords,
+        title = '10-15 - Store Robbery',
+        message = 'A '..data.sex..' robbing a store at '..data.street, 
+        flash = 0,
+        unique_id = tostring(math.random(0000000,9999999)),
+        blip = {
+            sprite = 431, 
+            scale = 1.2, 
+            colour = 3,
+            flashes = false, 
+            text = '911 - Store Robbery',
+            time = (5601000),
+            sound = 1,
+        }
+    })
+]]

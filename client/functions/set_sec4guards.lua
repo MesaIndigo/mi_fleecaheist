@@ -51,18 +51,6 @@ AddEventHandler('mifh:client:load:mngr', function(bank)
                     -- doshit
                 end
             },
-            {
-                -- killed manager
-                name = 'sec_getjob',
-                label = Locale('mngr_card_kill'),
-                icon = 'fa-solid fa-user-clock',
-                canInteract = function(_, distance)
-                    return distance < 1.5 and IsEntityDead(uni)
-                end,
-                onSelect = function()
-                    -- doshit
-                end
-            },
         }
         exports.ox_target:addLocalEntity(uni, mngr_ops)
     end
