@@ -6,6 +6,23 @@ RemBlipInfo = function(blip)
     end
 end
 
+RandomizeList = function(list, result)
+    result = list[math.random(1, #list)]
+    return result
+end
+
+LoadAllList = function(list, result)
+    for k, v in pairs(list) do
+        for i = 1, #list do
+            result = vector3(
+                list[i].x, 
+                list[i].y, 
+                list[i].z)
+            return result
+        end
+    end
+end
+
 -- set blip info
 SetBlipInfo = function(blip, sprite, color, route, name)
     SetBlipSprite(blip, sprite)
