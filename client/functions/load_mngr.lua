@@ -1,14 +1,5 @@
 local active, uni = true, nil
 
-local rndmz_mngr = function(model)
-    local list = {
-        [1] = {'a_f_y_business_01'}, [2] = {'a_f_y_business_04'},
-        [3] = {'a_m_y_business_02'}, [4] = {'a_m_y_business_01'},
-    }
-    model = list[math.random(1, #list)]
-    return model
-end
-
 local rndmz_anim = function(model)
     local list = {
         [1] = {'WORLD_HUMAN_AA_COFFEE'}, [2] = {'WORLD_HUMAN_AA_SMOKE'},
@@ -22,7 +13,7 @@ RegisterNetEvent('mifh:client:load:mngr')
 AddEventHandler('mifh:client:load:mngr', function(bank)
     if not active then return end
         if active then
-        local model, anim = lib.requestModel(rndmz_mngr), lib.requestModel(rndmz_anim)
+        local model, anim = lib.requestModel(RandomizeList(data.manager.model)), lib.requestModel(rndmz_anim)
         uni = CreatePed(1, model, bank.loc.x, bank.loc.y, bank.loc.z-1, bank.loc.w, true, false)
         TaskStartScenarioInPlace(uni, anim, 0, true)
 

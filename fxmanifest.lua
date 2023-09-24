@@ -23,6 +23,7 @@ shared_scripts {
 
 client_scripts {
     'client/functions/*.lua',
+    'client/data.banks.lua',
     'client/events.lua'
 }
 

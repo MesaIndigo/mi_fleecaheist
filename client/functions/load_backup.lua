@@ -11,7 +11,7 @@ RegisterCommand('callbackup', function()
     local chase = true
     if chase then
         local char = lib.requestModel(SO.office.job.model, 300)
-        ped = lib.callback('misj:sever:spawn:ped', false, function() end, char, spawn)
+        ped = lib.callback('mifh:sever:spawn:ped', false, function() end, char, spawn)
 
         local model = SO.office.spn.veh1.model
         

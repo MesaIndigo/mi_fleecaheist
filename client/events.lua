@@ -23,6 +23,12 @@ LoadAllList = function(list, result)
     end
 end
 
+TimerCoolDown = function(data, bool)
+    SetTimeout(FH.heistcooldown * 60000, function()
+    bool = true
+    end)
+end
+
 -- set blip info
 SetBlipInfo = function(blip, sprite, color, route, name)
     SetBlipSprite(blip, sprite)
