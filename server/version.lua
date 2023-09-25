@@ -7,7 +7,7 @@ local function versionPrint(_type, log)
 end
 
 local function CheckMenuVersion()
-    PerformHttpRequest('https://raw.githubusercontent.com/MesaIndigo/mi_fleecaheist/master/version.txt', function(err, text, headers)
+    PerformHttpRequest('https://raw.githubusercontent.com/MesaIndigo/mi_fleecaheist/master/data/version.txt', function(err, text, headers)
         local currentVersion = GetResourceMetadata(GetCurrentResourceName(), 'version')
         if not text then 
             versionPrint('error', 'ERROR: Unable to check version. Your ports or connections may be blocking access.')
