@@ -18,5 +18,10 @@ local loadheistlocation = function()
 end
 
 RegisterCommand('hststart', function()
-    
+    local data = DB.alta
+    local model = lib.requestModel(RandomizeList(data.manager.model), 300)
+    local coords = RandomizeList(data.manager.loc)
+
+    ped = lib.callback('mifh:sever:spawn:ped', false, function() end, model, coords)
+    setped(ped)
 end, false)

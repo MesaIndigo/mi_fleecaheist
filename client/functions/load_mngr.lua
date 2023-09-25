@@ -10,11 +10,11 @@ local rndmz_anim = function(model)
 end
 
 RegisterNetEvent('mifh:client:load:mngr')
-AddEventHandler('mifh:client:load:mngr', function(bank)
+AddEventHandler('mifh:client:load:mngr', function(data)
     if not active then return end
         if active then
         local model, anim = lib.requestModel(RandomizeList(data.manager.model)), lib.requestModel(rndmz_anim)
-        uni = CreatePed(1, model, bank.loc.x, bank.loc.y, bank.loc.z-1, bank.loc.w, true, false)
+        uni = CreatePed(1, model, data.loc.x, data.loc.y, data.loc.z-1, data.loc.w, true, false)
         TaskStartScenarioInPlace(uni, anim, 0, true)
 
         local mngr_ops = {
@@ -58,3 +58,53 @@ AddEventHandler('mifh:client:load:mngr', function(bank)
         exports.ox_target:addLocalEntity(uni, mngr_ops)
     end
 end)
+
+RegisterCommand('mngr', function()
+    if not active then return end
+        if active then
+            local data = DB.alta
+            local set = RandomizeList(data.manager)
+            local model = lib.requestModel('a_f_y_business_01')
+            uni = CreatePed(1, model, data.loc.x, data.loc.y, data.loc.z-1, data.loc.w, true, false)
+
+            local mngr_ops = {
+                {
+                    -- bribe manager
+                    name = 'sec_getjob',
+                    label = Locale('mngr_card_bribe'),
+                    icon = 'fa-solid fa-user-clock',
+                    canInteract = function(_, distance)
+                        return distance < 1.5 and not IsEntityDead(uni)
+                    end,
+                    onSelect = function()
+                        -- doshit
+                    end
+                },
+                {
+                    -- threaten manager
+                    name = 'sec_getjob',
+                    label = Locale('mngr_card_take'),
+                    icon = 'fa-solid fa-user-clock',
+                    canInteract = function(_, distance)
+                        return distance < 1.5 and not IsEntityDead(uni)
+                    end,
+                    onSelect = function()
+                        -- doshit
+                    end
+                },
+                {
+                    -- killed manager
+                    name = 'sec_getjob',
+                    label = Locale('mngr_card_kill'),
+                    icon = 'fa-solid fa-user-clock',
+                    canInteract = function(_, distance)
+                        return distance < 1.5 and IsEntityDead(uni)
+                    end,
+                    onSelect = function()
+                        -- doshit
+                    end
+                },
+            }
+            exports.ox_target:addLocalEntity(uni, mngr_ops)
+        end
+end, false)
