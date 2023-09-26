@@ -7,6 +7,9 @@ Locale = lib.locale
 -- current framework options: OX
 Framework = 'OX'
 
+-- current locale options: en
+Language = 'en'
+
 -- notification configuration for script
 Ntfy = {
     id = 'notify',          -- don't worry about this

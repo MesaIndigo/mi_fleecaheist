@@ -7,15 +7,15 @@ local setmodel = function(model)
 end
 
 -- call event
-RegisterNetEvent('mifh:client:set:manager')
-AddEventHandler('mifh:client:set:manager', function(data)
+RegisterNetEvent('mifh:client:run:backup')
+AddEventHandler('mifh:client:run:backup', function(data)
 
 end)
 
-RegisterCommand('mfmanager', function()
+RegisterCommand('mfbackup', function()
     if not Debug then
         print('debug: false | set debug to true to test this command')
     else
-        TriggerServerEvent('mifh:server:set:manager')
+        TriggerServerEvent('mifh:server:run:backup')
     end
 end, false)
