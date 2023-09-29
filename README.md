@@ -1,6 +1,7 @@
 ![fleecah](https://github.com/MesaIndigo/mi_fleecaheist/assets/116332087/af4a99dc-22f9-4b3d-97e1-66ac87612f48)
 
-### M.I. Resources Support Discord: [click me](https://discord.gg/XwhBUGErxY)
+**Currently on hiatus. Support will not be given as I am dealing with my mommy issues**
+
 ![GitHub all releases](https://img.shields.io/github/downloads/MesaIndigo/mi_fleecaheist/total)
 ![GitHub](https://img.shields.io/github/license/MesaIndigo/mi_fleecaheist)
 
