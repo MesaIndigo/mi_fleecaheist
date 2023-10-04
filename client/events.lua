@@ -50,6 +50,22 @@ RegisterCommand('drilltest', function()
     TriggerEvent('mifh:start:vault', choice)
 end, false)
 
+---@param bank 'alta' | 'legion' | 'burton' | 'delperro' | 'chumash' | 'harmony'
+local startRobbery = function(bank)
+    if not timer then
+        FH.chosenbank, FH.inprogress = BK.banks[bank], true;
+        local bloc = FH.chosenbank.vaultdoor.loc
+        blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
+        UT.mfhroute(blip)
+        UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
+        TriggerEvent('mifh:start:mngr', FH.chosenbank)
+        TriggerEvent('mifh:start:security', FH.chosenbank)
+        TriggerEvent('mifh:start:vault', FH.chosenbank)
+        TriggerEvent('mifh:start:trollys', FH.chosenbank)
+        cooldown(FH.chosenbank)
+        UT.mfhremove_blip(blip)
+    end
+end
 
 lib.registerContext({
     id = 'fleecaheist_menu',
@@ -60,20 +76,7 @@ lib.registerContext({
             description = 'Los Santos, Alta St & Harwick Ave',
             icon = 'piggy-bank',
             onSelect = function()
-                if not timer then
-                FH.inprogress = true
-                FH.chosenbank = BK.banks.alta
-                local bloc = FH.chosenbank.vaultdoor.loc
-                blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
-                UT.mfhroute(blip)
-                UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
-                TriggerEvent('mifh:start:mngr', FH.chosenbank)
-                TriggerEvent('mifh:start:security', FH.chosenbank)
-                TriggerEvent('mifh:start:vault', FH.chosenbank)
-                TriggerEvent('mifh:start:trollys', FH.chosenbank)
-                cooldown(FH.chosenbank)
-                UT.mfhremove_blip(blip)
-                end
+                startRobbery('alta');
             end,
         },
         {
@@ -81,18 +84,7 @@ lib.registerContext({
             description = 'Los Santos, Mission Row & Straberry Ave',
             icon = 'piggy-bank',
             onSelect = function()
-                FH.inprogress = true
-                FH.chosenbank = BK.banks.legion
-                local bloc = FH.chosenbank.vaultdoor.loc
-                blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
-                UT.mfhroute(blip)
-                UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
-                TriggerEvent('mifh:start:mngr', FH.chosenbank)
-                TriggerEvent('mifh:start:security', FH.chosenbank)
-                TriggerEvent('mifh:start:vault', FH.chosenbank)
-                TriggerEvent('mifh:start:trollys', FH.chosenbank)
-                cooldown(FH.chosenbank)
-                UT.mfhremove_blip(blip)
+                startRobbery('legion');
             end,
         },
         {
@@ -100,18 +92,7 @@ lib.registerContext({
             description = 'Los Santos, Burton St & San Vitus Blvd',
             icon = 'piggy-bank',
             onSelect = function()
-                FH.inprogress = true
-                FH.chosenbank = BK.banks.burton
-                local bloc = FH.chosenbank.vaultdoor.loc
-                blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
-                UT.mfhroute(blip)
-                UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
-                TriggerEvent('mifh:start:mngr', FH.chosenbank)
-                TriggerEvent('mifh:start:security', FH.chosenbank)
-                TriggerEvent('mifh:start:vault', FH.chosenbank)
-                TriggerEvent('mifh:start:trollys', FH.chosenbank)
-                cooldown(FH.chosenbank)
-                UT.mfhremove_blip(blip)
+                startRobbery('burton');
             end,
         },
         {
@@ -119,18 +100,7 @@ lib.registerContext({
             description = 'Los Santos, Rockford Hills & Blvd Del Perro',
             icon = 'piggy-bank',
             onSelect = function()
-                FH.inprogress = true
-                FH.chosenbank = BK.banks.delperro
-                local bloc = FH.chosenbank.vaultdoor.loc
-                blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
-                UT.mfhroute(blip)
-                UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
-                TriggerEvent('mifh:start:mngr', FH.chosenbank)
-                TriggerEvent('mifh:start:security', FH.chosenbank)
-                TriggerEvent('mifh:start:vault', FH.chosenbank)
-                TriggerEvent('mifh:start:trollys', FH.chosenbank)
-                cooldown(FH.chosenbank)
-                UT.mfhremove_blip(blip)
+                startRobbery('delperro');
             end,
         },
         {
@@ -138,18 +108,7 @@ lib.registerContext({
             description = 'Chumash, Banham Canyon & Great Ocean Highway',
             icon = 'piggy-bank',
             onSelect = function()
-                FH.inprogress = true
-                FH.chosenbank = BK.banks.chumash
-                local bloc = FH.chosenbank.vaultdoor.loc
-                blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
-                UT.mfhroute(blip)
-                UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
-                TriggerEvent('mifh:start:mngr', FH.chosenbank)
-                TriggerEvent('mifh:start:security', FH.chosenbank)
-                TriggerEvent('mifh:start:vault', FH.chosenbank)
-                TriggerEvent('mifh:start:trollys', FH.chosenbank)
-                cooldown(FH.chosenbank)
-                UT.mfhremove_blip(blip)
+                startRobbery('chumash');
             end,
         },
         {
@@ -157,22 +116,11 @@ lib.registerContext({
             description = 'Harmony, Route 68 & Grand Senora Desert',
             icon = 'piggy-bank',
             onSelect = function()
-                FH.inprogress = true
-                FH.chosenbank = BK.banks.harmony
-                local bloc = FH.chosenbank.vaultdoor.loc
-                blip = AddBlipForCoord(bloc.x, bloc.y, bloc.z)
-                UT.mfhroute(blip)
-                UT.mfhnotify('fleecastart', 'CNS: Bank system isolated', 'time to heist some money')
-                TriggerEvent('mifh:start:mngr', FH.chosenbank)
-                TriggerEvent('mifh:start:security', FH.chosenbank)
-                TriggerEvent('mifh:start:vault', FH.chosenbank)
-                TriggerEvent('mifh:start:trollys', FH.chosenbank)
-                cooldown(FH.chosenbank)
-                UT.mfhremove_blip(blip)
+                startRobbery('harmony');
             end,
         },
     }
-})
+});
 
 AddEventHandler('mifh:reset:all', function(choice)
     TriggerEvent('mifh:reset:mngr', choice)
