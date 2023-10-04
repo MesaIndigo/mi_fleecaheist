@@ -67,60 +67,57 @@ local startRobbery = function(bank)
     end
 end
 
-lib.registerContext({
-    id = 'fleecaheist_menu',
-    title = 'Darkweb: Fleeca Heist Plan',
-    options = {
-        {
-            title = 'Fleeca: location #1',
+CreateThread(function()
+    local banks = {
+        [1] = {
             description = 'Los Santos, Alta St & Harwick Ave',
-            icon = 'piggy-bank',
-            onSelect = function()
-                startRobbery('alta');
-            end,
+            name = 'alta'
         },
-        {
-            title = 'Fleeca: location #2',
+
+        [2] = {
             description = 'Los Santos, Mission Row & Straberry Ave',
-            icon = 'piggy-bank',
-            onSelect = function()
-                startRobbery('legion');
-            end,
+            name = 'legion'
         },
-        {
-            title = 'Fleeca: location #3',
+
+        [3] = {
             description = 'Los Santos, Burton St & San Vitus Blvd',
-            icon = 'piggy-bank',
-            onSelect = function()
-                startRobbery('burton');
-            end,
+            name = 'burton'
         },
-        {
-            title = 'Fleeca: location #4',
+
+        [4] = {
             description = 'Los Santos, Rockford Hills & Blvd Del Perro',
-            icon = 'piggy-bank',
-            onSelect = function()
-                startRobbery('delperro');
-            end,
+            name = 'delperro'
         },
-        {
-            title = 'Fleeca: location #5',
+
+        [5] = {
             description = 'Chumash, Banham Canyon & Great Ocean Highway',
-            icon = 'piggy-bank',
-            onSelect = function()
-                startRobbery('chumash');
-            end,
+            name = 'chumash'
         },
-        {
-            title = 'Fleeca: location #6',
+
+        [6] = {
             description = 'Harmony, Route 68 & Grand Senora Desert',
+            name = 'harmony'
+        },
+    };
+    -- Options Handler --
+    local contextOptions = {};
+    for i = 1, #banks do
+        contextOptions[#contextOptions + 1] = {
+            title = ('Fleeca: location #%s'):format(i),
+            description = banks[i].description,
             icon = 'piggy-bank',
             onSelect = function()
-                startRobbery('harmony');
+                startRobbery(banks[i].name);
             end,
-        },
-    }
-});
+        };
+    end
+    -- Context Registering --
+    lib.registerContext({
+        id = 'fleecaheist_menu',
+        title = 'Darkweb: Fleeca Heist Plan',
+        options = contextOptions
+    });
+end);
 
 AddEventHandler('mifh:reset:all', function(choice)
     TriggerEvent('mifh:reset:mngr', choice)
